@@ -77,6 +77,11 @@ jobs:
         cd $GITHUB_WORKSPACE/kernel_workspace
         mkdir llvm-clang && mkdir binutils
         
+        if [ ${{ env.LLVM_VERSION }} = 02.28 ]; then
+             wget -O clang0228.tar.xz https://github.com/intel/llvm/releases/download/nightly-2025-02-28/sycl_linux.tar.gz
+             tar -C llvm-clang/ -xf clang0228.tar.xz
+        fi
+        
         if [ ${{ env.LLVM_VERSION }} = 17.06 ]; then
              wget -O clang1706.tar.xz https://github.com/llvm/llvm-project/releases/download/llvmorg-17.0.6/clang+llvm-17.0.6-x86_64-linux-gnu-ubuntu-22.04.tar.xz
              tar -C llvm-clang/ -xf clang1706.tar.xz
